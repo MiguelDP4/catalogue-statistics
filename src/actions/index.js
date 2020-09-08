@@ -1,3 +1,10 @@
+import {
+  CHANGE_FILTER,
+  CHANGE_ORDER,
+  GET_REQUEST_ERROR,
+  GET_REQUEST_SUCCESS,
+  GET_REQUEST_PENDING
+} from '../constants';
 /*objFilter is an object with various parameters
 The structure will be:
 {
@@ -22,7 +29,16 @@ export const changeOrder = objOrder => ({
   order: objOrder,
 });
 
-export const APIcall = call => ({
-  type: GET_REQUEST,
-  call,
+export const APIcallPending = () => ({
+  type: GET_REQUEST_PENDING,
+})
+
+export const APIcallSuccess = call => ({
+  type: GET_REQUEST_SUCCESS,
+  response: call,
+})
+
+export const APIcallError = error => ({
+  type: GET_REQUEST_ERROR,
+  error: error,
 })

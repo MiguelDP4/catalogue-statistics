@@ -1,4 +1,6 @@
-export const GET_REQUEST = 'GET_REQUEST';
+export const GET_REQUEST_PENDING = 'GET_REQUEST_PENDING';
+export const GET_REQUEST_SUCCESS = 'GET_REQUEST_SUCCESS';
+export const GET_REQUEST_ERROR = 'GET_REQUEST_ERROR';
 export const CHANGE_FILTER = 'CHANGE_FILTER';
 export const CHANGE_ORDER = 'CHANGE_ORDER';
 export const POKEMON_TYPE = 'POKEMON_TYPE';
@@ -14,3 +16,8 @@ export const INITIAL_ORDER_STATE = {
   showQuantity: DEFAULT_SHOW_QUANTITY,
   page: 1,
 };
+export const INITIAL_API_GET_STATE = {
+  pending: false,
+  response: '',
+  error: null,
+}
