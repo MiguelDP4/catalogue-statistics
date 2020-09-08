@@ -21,3 +21,8 @@ export const changeOrder = objOrder => ({
   type: CHANGE_ORDER,
   order: objOrder,
 });
+
+export const APIcall = call => ({
+  type: GET_REQUEST,
+  call,
+})

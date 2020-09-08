@@ -1,3 +1,4 @@
+export const GET_REQUEST = 'GET_REQUEST';
 export const CHANGE_FILTER = 'CHANGE_FILTER';
 export const CHANGE_ORDER = 'CHANGE_ORDER';
 export const POKEMON_TYPE = 'POKEMON_TYPE';
