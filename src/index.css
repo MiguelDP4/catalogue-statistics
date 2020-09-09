@@ -29,8 +29,23 @@ body {
   background-color: #004D40;
 }
 
+.pokemon-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .pokemon-card {
+  -webkit-box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
   width: 192px;
   height: 192px;
+  margin: 16px;
   background-color: #006655;
+  transition: background-color 0.3s;
+}
+
+.pokemon-card:hover {
+  background-color: #004D40;
 }
