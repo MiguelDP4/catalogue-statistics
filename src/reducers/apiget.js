@@ -16,7 +16,7 @@ function apiget(state = INITIAL_API_GET_STATE, action) {
       return {
         ...state,
         pending: false,
-        response: action.payload
+        response: action.response
       };
     case GET_REQUEST_ERROR:
       return {
