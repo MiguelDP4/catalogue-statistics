@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
+import { changeFilter } from '../actions/index';
 import Pokemon from '../components/Pokemon';
 import logo from '../logo.svg';
 import Filter from '../components/PokemonFilter';
@@ -91,6 +92,17 @@ class PokemonList extends React.Component {
         "url": "https://pokeapi.co/api/v2/pokemon/20/"
       }
     ];
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(event) {
+    const card = event.target;
+    if(card.className == 'pokemon-card') {
+      card.className = 'pokemon-card-big';
+    } else {
+      card.className = 'pokemon-card';
+    }
   }
 
   render() {
@@ -103,9 +115,11 @@ class PokemonList extends React.Component {
         <div>
           <div className='pokemon-list'>
               {this.pokemonList.map(pokemon => (
-                <div className='pokemon-card'>
-                  {pokemon.name}
-                </div>
+                <Pokemon 
+                key={pokemon.name}
+                pokemonObject={pokemon}
+                handleClick={this.handleClick}
+                />
               ))}
           </div>
         </div>
@@ -114,4 +128,12 @@ class PokemonList extends React.Component {
   }
 }
 
-export default PokemonList;
+const mapStateToProps = state => ({
+  
+});
+
+const mapDispatchToProps = dispatch => ({
+  changeFilter: objFilter => dispatch(changeFilter(objFilter)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PokemonList);
