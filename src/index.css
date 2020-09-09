@@ -46,6 +46,20 @@ body {
   transition: background-color 0.3s;
 }
 
+.pokemon-card-big {
+  -webkit-box-shadow: 0 24px 38px 3px rgba(0,0,0,0.14), 0 9px 46px 8px rgba(0,0,0,0.12), 0 11px 15px -7px rgba(0,0,0,0.2);
+  box-shadow: 0 24px 38px 3px rgba(0,0,0,0.27), 0 9px 46px 8px rgba(0,0,0,0.24), 0 11px 15px -7px rgba(0,0,0,0.4);
+  width: 90%;
+  height: 95vh;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #006655;
+  transition: width 0.3s, height 0.3s;
+  z-index: 10000;
+}
+
 .pokemon-card:hover {
   background-color: #004D40;
 }
