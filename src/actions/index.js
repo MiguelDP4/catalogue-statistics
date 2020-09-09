@@ -33,9 +33,9 @@ export const APIcallPending = () => ({
   type: GET_REQUEST_PENDING,
 })
 
-export const APIcallSuccess = call => ({
+export const APIcallSuccess = data => ({
   type: GET_REQUEST_SUCCESS,
-  response: call,
+  response: data,
 })
 
 export const APIcallError = error => ({
