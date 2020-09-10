@@ -20,4 +20,24 @@ export const INITIAL_API_GET_STATE = {
   pending: false,
   response: '',
   error: null,
-}
+};
+export const POKEMON_TYPES = [
+  'normal',
+  'fighting',
+  'flying',
+  'poison',
+  'ground',
+  'rock',
+  'bug',
+  'ghost',
+  'steel',
+  'fire',
+  'water',
+  'grass',
+  'electric',
+  'psychic',
+  'ice',
+  'dragon',
+  'dark',
+  'fairy',
+];
