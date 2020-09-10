@@ -13,6 +13,6 @@ export default combineReducers({
   // getResponse,
   // getResponsePending,
   // getResponseError,
-  // order,
+  order,
   filters
 });

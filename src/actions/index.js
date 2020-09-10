@@ -16,17 +16,9 @@ export const changeFilter = objFilter => ({
   filter: objFilter,
 });
 
-/*objOrder is an object with various parameters
-The structure will be:
-{
-  orderBy: parameterString,  (This could be type, name or pokedex number)
-  showQuantity: integer,     (This is the number of pokemon the user will see on their page)
-  page: integer,              (This is going to be used for pagination)
-}*/
-
-export const changeOrder = objOrder => ({
+export const changeOrder = order => ({
   type: CHANGE_ORDER,
-  order: objOrder,
+  order: order,
 });
 
 export const APIcallPending = () => ({
