@@ -10,111 +10,63 @@ import PokemonFilter from '../components/PokemonFilter';
 class PokemonList extends React.Component {
   constructor() {
     super();
-    this.pokemonList = [
-      {
-        "name": "bulbasaur",
-        "url": "https://pokeapi.co/api/v2/pokemon/1/"
-      },
-      {
-        "name": "ivysaur",
-        "url": "https://pokeapi.co/api/v2/pokemon/2/"
-      },
-      {
-        "name": "venusaur",
-        "url": "https://pokeapi.co/api/v2/pokemon/3/"
-      },
-      {
-        "name": "charmander",
-        "url": "https://pokeapi.co/api/v2/pokemon/4/"
-      },
-      {
-        "name": "charmeleon",
-        "url": "https://pokeapi.co/api/v2/pokemon/5/"
-      },
-      {
-        "name": "charizard",
-        "url": "https://pokeapi.co/api/v2/pokemon/6/"
-      },
-      {
-        "name": "squirtle",
-        "url": "https://pokeapi.co/api/v2/pokemon/7/"
-      },
-      {
-        "name": "wartortle",
-        "url": "https://pokeapi.co/api/v2/pokemon/8/"
-      },
-      {
-        "name": "blastoise",
-        "url": "https://pokeapi.co/api/v2/pokemon/9/"
-      },
-      {
-        "name": "caterpie",
-        "url": "https://pokeapi.co/api/v2/pokemon/10/"
-      },
-      {
-        "name": "metapod",
-        "url": "https://pokeapi.co/api/v2/pokemon/11/"
-      },
-      {
-        "name": "butterfree",
-        "url": "https://pokeapi.co/api/v2/pokemon/12/"
-      },
-      {
-        "name": "weedle",
-        "url": "https://pokeapi.co/api/v2/pokemon/13/"
-      },
-      {
-        "name": "kakuna",
-        "url": "https://pokeapi.co/api/v2/pokemon/14/"
-      },
-      {
-        "name": "beedrill",
-        "url": "https://pokeapi.co/api/v2/pokemon/15/"
-      },
-      {
-        "name": "pidgey",
-        "url": "https://pokeapi.co/api/v2/pokemon/16/"
-      },
-      {
-        "name": "pidgeotto",
-        "url": "https://pokeapi.co/api/v2/pokemon/17/"
-      },
-      {
-        "name": "pidgeot",
-        "url": "https://pokeapi.co/api/v2/pokemon/18/"
-      },
-      {
-        "name": "rattata",
-        "url": "https://pokeapi.co/api/v2/pokemon/19/"
-      },
-      {
-        "name": "raticate",
-        "url": "https://pokeapi.co/api/v2/pokemon/20/"
-      }
-    ];
-
     this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleClick(event) {
-    const card = event.target;
-    if(card.className == 'pokemon-card') {
-      card.className = 'pokemon-card-big';
-    } else {
-      card.className = 'pokemon-card';
+    let element = event.target;
+    while(!element.id.includes('pokemon-card-')) {
+      element = element.parentElement;
+    }
+    if(element.className == 'pokemon-card') {
+      element.className = 'pokemon-card-big';
+      element.children[1].className = 'image-container-big';
+      element.children[2].className = 'type-container-big';
+      element.children[3].className = 'stats-container-big';
+    } else if (element.className == 'pokemon-card-big'){
+      element.className = 'pokemon-card';
+      element.children[1].className = 'image-container';
+      element.children[2].className = 'type-container';
+      element.children[3].className = 'stats-container';
     }
   }
 
+  handleChange() {
+    const { changeFilter } = this.props;
+    const pokemonName = document.getElementById('pokemon-name');
+    const typesButton = document.getElementById('pokemon-type');
+    const newFilter = {
+      type: typesButton.value,
+      name: pokemonName.value,
+    };
+    changeFilter(newFilter);
+  }
+
+  filterPokemon(pokemonList, filters) {
+    let newArray = [];
+    if (filters.type !== 'all') {
+      console.log(filters);
+      newArray = pokemonList.filter(pokemon => pokemon.types.includes(filters.type));
+      newArray = newArray.filter(pokemon => pokemon.name.toLowerCase().includes(filters.name.toLowerCase()));
+    } else {
+      newArray = [...pokemonList]
+      newArray = newArray.filter(pokemon => pokemon.name.toLowerCase().includes(filters.name.toLowerCase()));
+    }
+    return newArray;
+  }
+
   render() {
+    const { filters } = this.props;
     return (
       <div className='page-container'>
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <Filter />
+          <Filter handleChange={this.handleChange} />
         </header>
         <div>
           <div className='pokemon-list'>
-              {this.pokemonList.map(pokemon => (
+              {this.filterPokemon(this.pokemonList, filters).map(pokemon => (
                 <Pokemon 
                 key={pokemon.name}
                 pokemonObject={pokemon}
@@ -129,7 +81,7 @@ class PokemonList extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  
+  filters: state.filters,
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -8,7 +8,7 @@ export const POKEMON_NAME = 'POKEMON_NAME';
 export const DEX_NUMBER = 'DEX_NUMBER';
 const DEFAULT_SHOW_QUANTITY = 26;
 export const INITIAL_FILTER_STATE = {
-  type: '',
+  type: 'all',
   name: '',
 };
 export const INITIAL_ORDER_STATE = {

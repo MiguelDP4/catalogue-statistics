@@ -1,6 +1,6 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import callAPI from '../async/fetchRequest';
+import { POKEMON_TYPES } from '../constants';
 
 //This is for testing, API will fill this instead
 // const PokemonTypes = callAPI('https://pokeapi.co/api/v2/type');
@@ -10,18 +10,28 @@ import callAPI from '../async/fetchRequest';
 // .slice(0, 18);
 
 export default function PokemonFilter(props) {
-  // const { handleChange } = props;
+  const { handleChange } = props;
   return (
-    <select className="types-button" >
-      <option default value="All Pokemon">
-        Pokemon Types
-      </option>
-      {/* {PokemonTypes.map(type => (
-        <option key={type} value={`${type}`}>
-          {type}
+    <div className='filter-container'>
+      <select className="types-button" onChange={handleChange} id='pokemon-type' >
+        <option default value="all">
+          Pokemon Types
         </option>
-      ))} */}
-    </select>
+        {POKEMON_TYPES.map(type => (
+          <option key={type} value={`${type}`}>
+            {type}
+          </option>
+        ))}
+      </select>
+      <input
+      type="text"
+      id="pokemon-name"
+      placeholder="Search Pokémon by Species"
+      className="search-pokemon-name"
+      onChange={handleChange}
+      ></input>
+    </div>
+    
   );
 }
 
