@@ -16,7 +16,7 @@ export const INITIAL_ORDER_STATE = {
 };
 export const INITIAL_API_GET_STATE = {
   pending: false,
-  response: '',
+  response: [],
   error: null,
 };
 export const POKEMON_TYPES = [
