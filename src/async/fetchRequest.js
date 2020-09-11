@@ -7,8 +7,23 @@ async function fetchRequest(request) {
   }
 }
 
-function searchPage(pageString) {
-  return fetchRequest(pageString).then(data => data.json());
+function searchPokemon(dexNumber) {
+  const foundPokemon = {};
+  fetchRequest(`https://pokeapi.co/api/v2/pokemon/${dexNumber}`).then(data => data.json())
+  .then(pokemon => {
+    foundPokemon.id = pokemon.id;
+    foundPokemon.name = pokemon.name;
+    foundPokemon.types = [pokemon.types[0], pokemon.types[1]];
+    foundPokemon.stats = {
+      "hp": pokemon.stats[0].base_stat,
+      "attack": pokemon.stats[1].base_stat,
+      "defense": pokemon.stats[2].base_stat,
+      "specialattack": pokemon.stats[3].base_stat,
+      "specialdefense": pokemon.stats[4].base_stat,
+      "speed": pokemon.stats[5].base_stat,
+    };
+    foundPokemon.image = pokemon.sprites.front_default
+    });
 }
 
-export default searchPage;
+export default searchPokemon;
