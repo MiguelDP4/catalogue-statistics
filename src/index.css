@@ -8,28 +8,34 @@ body {
 .App-logo {
   width: 64px;
   height: auto;
-  margin: 8px;
 }
 
 .App-header {
   background-color: #00251f;
-  height: 80px;
+  padding-top: 16px;
+  padding-bottom: 16px;
   -webkit-box-shadow: 0 24px 38px 3px rgba(0,0,0,0.14), 0 9px 46px 8px rgba(0,0,0,0.12), 0 11px 15px -7px rgba(0,0,0,0.2);
   box-shadow: 0 24px 38px 3px rgba(0,0,0,0.14), 0 9px 46px 8px rgba(0,0,0,0.12), 0 11px 15px -7px rgba(0,0,0,0.2);
 
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 .filter-container {
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   flex: 1;
 }
 
 .types-button {
   height: 48px;
   padding: .375rem 1.75rem .375rem .75rem;
-  margin: 16px;
+  margin: 4px;
   font-size: 1rem;
   border-radius: 0.25em;
   border-color: #004D40;
@@ -42,7 +48,7 @@ body {
   flex: 1;
   max-width: 384px;
   padding: 0 1.75rem 0 .75rem;
-  margin: 16px;
+  margin: 4px;
   font-size: 1rem;
   border: 0 solid;
   border-radius: 0.25em;
