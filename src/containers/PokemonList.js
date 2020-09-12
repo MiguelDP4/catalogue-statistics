@@ -17,6 +17,7 @@ class PokemonList extends React.Component {
     this.startComponentRender = this.startComponentRender.bind(this);
   }
 
+  // eslint-disable-next-line camelcase
   componentWillMount() {
     const { searchPokemon } = this.props;
     searchPokemon();
@@ -24,26 +25,25 @@ class PokemonList extends React.Component {
 
   startComponentRender() {
     const { pokemons } = this.props;
-    console.log(pokemons.pending);
-    if(pokemons.pending) return false;
+    if (pokemons.pending) return false;
     return true;
   }
 
   handleClick(event) {
-    let element = event.target;
-    while(!element.id.includes('pokemon-card-')) {
-      element = element.parentElement;
+    this.element = event.target;
+    while (!this.element.id.includes('pokemon-card-')) {
+      this.element = this.element.parentElement;
     }
-    if(element.className == 'pokemon-card') {
-      element.className = 'pokemon-card-big';
-      element.children[1].className = 'image-container-big';
-      element.children[2].className = 'type-container-big';
-      element.children[3].className = 'stats-container-big';
-    } else if (element.className == 'pokemon-card-big'){
-      element.className = 'pokemon-card';
-      element.children[1].className = 'image-container';
-      element.children[2].className = 'type-container';
-      element.children[3].className = 'stats-container';
+    if (this.element.className === 'pokemon-card') {
+      this.element.className = 'pokemon-card-big';
+      this.element.children[1].className = 'image-container-big';
+      this.element.children[2].className = 'type-container-big';
+      this.element.children[3].className = 'stats-container-big';
+    } else if (this.element.className === 'pokemon-card-big') {
+      this.element.className = 'pokemon-card';
+      this.element.children[1].className = 'image-container';
+      this.element.children[2].className = 'type-container';
+      this.element.children[3].className = 'stats-container';
     }
   }
 
@@ -58,27 +58,29 @@ class PokemonList extends React.Component {
     };
     const newOrder = {
       orderBy: pokemonOrder.value,
-    }
+    };
     changeFilter(newFilter);
     changeOrder(newOrder);
   }
 
   filterPokemon(pokemonList, filters, order) {
-    let newArray = [];
-    if(pokemonList.length === 0) return newArray;
+    this.newArray = [];
+    if (pokemonList.length === 0) return this.newArray;
     if (filters.type !== 'all') {
-      newArray = pokemonList.filter(pokemon => pokemon.types.includes(filters.type));
-      newArray = newArray.filter(pokemon => pokemon.name.toLowerCase().includes(filters.name.toLowerCase()));
+      this.newArray = pokemonList.filter(pokemon => pokemon.types.includes(filters.type));
+      this.newArray = this.newArray.filter(pokemon => pokemon.name.toLowerCase()
+        .includes(filters.name.toLowerCase()));
     } else {
-      newArray = [...pokemonList]
-      newArray = newArray.filter(pokemon => pokemon.name.toLowerCase().includes(filters.name.toLowerCase()));
+      this.newArray = [...pokemonList];
+      this.newArray = this.newArray.filter(pokemon => pokemon.name.toLowerCase()
+        .includes(filters.name.toLowerCase()));
     }
-    if(order.orderBy === DEX_NUMBER) {
-      return newArray;
-    } else if(order.orderBy === POKEMON_NAME) {
-      newArray.sort(function(a,b) {
-        let nameA = a.name.toUpperCase();
-        let nameB = b.name.toUpperCase();
+    if (order.orderBy === DEX_NUMBER) {
+      return this.newArray;
+    } if (order.orderBy === POKEMON_NAME) {
+      this.newArray.sort((a, b) => {
+        const nameA = a.name.toUpperCase();
+        const nameB = b.name.toUpperCase();
         if (nameA < nameB) {
           return -1;
         }
@@ -87,10 +89,10 @@ class PokemonList extends React.Component {
         }
         return 0;
       });
-    } else if(order.orderBy === POKEMON_TYPE) {
-      newArray.sort(function(a,b){
-        let nameA = a.types[0].toUpperCase();
-        let nameB = b.types[0].toUpperCase();
+    } else if (order.orderBy === POKEMON_TYPE) {
+      this.newArray.sort((a, b) => {
+        const nameA = a.types[0].toUpperCase();
+        const nameB = b.types[0].toUpperCase();
         if (nameA < nameB) {
           return -1;
         }
@@ -100,36 +102,52 @@ class PokemonList extends React.Component {
         return 0;
       });
     }
-    return newArray;
+    return this.newArray;
   }
 
   render() {
-    const { filters, order, pokemons, pending } = this.props;
+    const {
+      filters, order, pokemons,
+    } = this.props;
     return (
-      <div className='page-container'>
+      <div className="page-container">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <Filter handleChange={this.handleChange} />
         </header>
         <div>
-          <div className='pokemon-list'>
-              { this.startComponentRender() ? 
-                this.filterPokemon(pokemons.pokemons, filters, order).map(pokemon => (
-                  <Pokemon 
+          <div className="pokemon-list">
+            { this.startComponentRender()
+              ? this.filterPokemon(pokemons.pokemons, filters, order).map(pokemon => (
+                <Pokemon
                   key={pokemon.name}
                   pokemonObject={pokemon}
                   handleClick={this.handleClick}
-                  />
-                )) : <div className="loader-container">
+                />
+              )) : (
+                <div className="loader-container">
                   <img src={loader} className="loading" alt="loader" />
                   <span>Loading, please wait...</span>
-                </div>}
+                </div>
+              )}
           </div>
         </div>
       </div>
     );
   }
 }
+
+PokemonList.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  pokemons: PropTypes.object.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  order: PropTypes.object.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  filters: PropTypes.object.isRequired,
+  changeFilter: PropTypes.func.isRequired,
+  changeOrder: PropTypes.func.isRequired,
+  searchPokemon: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = state => ({
   filters: state.filters,
