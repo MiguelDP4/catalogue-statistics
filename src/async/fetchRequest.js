@@ -43,7 +43,8 @@ async function searchPokemon(dexNumber) {
 
 async function searchAllPokemon() {
   let allPokemon = [];
-  for (let i = 1; i <= 807; i++) {
+  for (let i = 1; i <= 807; i += 1) {
+    // eslint-disable-next-line no-await-in-loop
     allPokemon = [...allPokemon, await searchPokemon(i)];
   }
   return allPokemon;

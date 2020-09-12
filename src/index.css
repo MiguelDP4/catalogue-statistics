@@ -77,6 +77,15 @@ body {
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  border: none;
+  color: #dffffa;
+  text-decoration: none;
+  outline: none;
+}
+
+.pokemon-card:active {
+  border: none;
+  outline: none;
 }
 
 .pokemon-card-h3 {
@@ -88,6 +97,7 @@ body {
   margin: 0;
   padding: 0;
   text-align: center;
+  width: 100%;
   flex: 1;
 }
 
@@ -122,6 +132,7 @@ body {
 .stats-container-big {
   display: flex;
   flex-direction: row;
+  width: 100%;
   margin-top: 1em;
   flex: 1;
 }
@@ -133,6 +144,7 @@ body {
 
 .stat-name{
   flex: 1;
+  text-align: left;
 }
 
 .stats-bars-container {
@@ -145,6 +157,7 @@ body {
   flex: 1;
   width: 100%;
   padding-left: 5%;
+  box-sizing: border-box;
 }
 
 .pokemon-card-big {
@@ -164,6 +177,9 @@ body {
   z-index: 10000;
   display: flex;
   flex-direction: column;
+  border: none;
+  color: #dffffa;
+  text-decoration: none;
 }
 
 .pokemon-card:hover {

@@ -4,10 +4,16 @@ import PropTypes from 'prop-types';
 const Pokemon = props => {
   const { pokemonObject, handleClick } = props;
   return (
-    <div id={`pokemon-card-${pokemonObject.name}`} className="pokemon-card" onClick={handleClick}>
+    <button
+      id={`pokemon-card-${pokemonObject.name}`}
+      className="pokemon-card"
+      onClick={handleClick}
+      href=""
+      type="button"
+    >
       <h3 className="pokemon-card-h3">{pokemonObject.name.toUpperCase()}</h3>
       <div className="image-container">
-        <img src={pokemonObject.image} className="pokemon-card-img" alt={`${pokemonObject.name}-image`} />
+        <img src={pokemonObject.image} className="pokemon-card-img" alt={`${pokemonObject.name}-sprite`} />
       </div>
       <div className="type-container">
         <b>TYPE: </b>
@@ -104,7 +110,7 @@ const Pokemon = props => {
           </span>
         </div>
       </div>
-    </div>
+    </button>
   );
 };
 

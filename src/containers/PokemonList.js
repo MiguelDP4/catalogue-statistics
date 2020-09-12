@@ -17,7 +17,7 @@ class PokemonList extends React.Component {
     this.startComponentRender = this.startComponentRender.bind(this);
   }
 
-  // eslint-disable-next-line camelcase
+  // eslint-disable-next-line react/no-deprecated
   componentWillMount() {
     const { searchPokemon } = this.props;
     searchPokemon();

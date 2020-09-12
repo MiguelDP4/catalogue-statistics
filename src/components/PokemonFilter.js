@@ -2,13 +2,6 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { POKEMON_TYPES, ORDER_CATEGORY } from '../constants';
 
-// This is for testing, API will fill this instead
-// const PokemonTypes = callAPI('https://pokeapi.co/api/v2/type');
-
-// console.log("pokemon types: " + PokemonTypes);
-// .map(typeObject => String(typeObject.name))
-// .slice(0, 18);
-
 export default function PokemonFilter(props) {
   const { handleChange } = props;
   return (

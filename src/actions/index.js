@@ -6,12 +6,7 @@ import {
   GET_REQUEST_PENDING,
 } from '../constants';
 import getAllPokemon from '../async/fetchRequest';
-/* objFilter is an object with various parameters
-The structure will be:
-{
-  type: pokemon_type,
-  name: snippet of the pokemon's name
-} */
+
 export const changeFilter = objFilter => ({
   type: CHANGE_FILTER,
   filter: objFilter,
@@ -33,6 +28,7 @@ const APIcallSuccess = pokemons => ({
 });
 
 export function searchAllPokemon() {
+  // eslint-disable-next-line func-names
   return async function (dispatch) {
     dispatch(APIcallPending());
     const response = await getAllPokemon();
