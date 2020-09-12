@@ -14,11 +14,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Live Demo
 
-You can check a demo version of the project in [this link](). Coming soon
+You can check a demo version of the project in [this link](http://micro-dex.herokuapp.com/).
 
 ### Demo images
 
-![](./app_screenshot.png)
+![](./src/app_screenshot.png)
 
 Coming soon
 
