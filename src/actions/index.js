@@ -3,42 +3,40 @@ import {
   CHANGE_ORDER,
   GET_REQUEST_ERROR,
   GET_REQUEST_SUCCESS,
-  GET_REQUEST_PENDING
+  GET_REQUEST_PENDING,
 } from '../constants';
-/*objFilter is an object with various parameters
-The structure will be:
-{
-  type: pokemon_type,
-  name: snippet of the pokemon's name
-}*/
+import getAllPokemon from '../async/fetchRequest';
+
 export const changeFilter = objFilter => ({
   type: CHANGE_FILTER,
   filter: objFilter,
 });
 
-/*objOrder is an object with various parameters
-The structure will be:
-{
-  orderBy: parameterString,  (This could be type, name or pokedex number)
-  showQuantity: integer,     (This is the number of pokemon the user will see on their page)
-  page: integer,              (This is going to be used for pagination)
-}*/
-
-export const changeOrder = objOrder => ({
+export const changeOrder = order => ({
   type: CHANGE_ORDER,
-  order: objOrder,
+  order,
 });
 
-export const APIcallPending = () => ({
+export const APIcallPending = pending => ({
   type: GET_REQUEST_PENDING,
-})
+  pending,
+});
 
-export const APIcallSuccess = call => ({
+const APIcallSuccess = pokemons => ({
   type: GET_REQUEST_SUCCESS,
-  response: call,
-})
+  pokemons,
+});
+
+export function searchAllPokemon() {
+  // eslint-disable-next-line func-names
+  return async function (dispatch) {
+    dispatch(APIcallPending());
+    const response = await getAllPokemon();
+    return dispatch(APIcallSuccess(response));
+  };
+}
 
 export const APIcallError = error => ({
   type: GET_REQUEST_ERROR,
-  error: error,
-})
+  error,
+});
