@@ -15,8 +15,8 @@ export const INITIAL_ORDER_STATE = {
   orderBy: DEX_NUMBER,
 };
 export const INITIAL_API_GET_STATE = {
-  pending: false,
-  response: [],
+  pending: true,
+  pokemons: [],
   error: null,
 };
 export const POKEMON_TYPES = [

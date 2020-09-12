@@ -5,6 +5,7 @@ import {
   GET_REQUEST_SUCCESS,
   GET_REQUEST_PENDING
 } from '../constants';
+import getAllPokemon from '../async/fetchRequest';
 /*objFilter is an object with various parameters
 The structure will be:
 {
@@ -21,14 +22,23 @@ export const changeOrder = order => ({
   order: order,
 });
 
-export const APIcallPending = () => ({
+export const APIcallPending = pending => ({
   type: GET_REQUEST_PENDING,
+  pending
 })
 
-export const APIcallSuccess = data => ({
+const APIcallSuccess = pokemons => ({
   type: GET_REQUEST_SUCCESS,
-  response: data,
+  pokemons: pokemons
 })
+
+export function searchAllPokemon () {
+  return async function (dispatch) {
+    dispatch(APIcallPending());
+    const response = await getAllPokemon();
+    return dispatch(APIcallSuccess(response));
+  }
+}
 
 export const APIcallError = error => ({
   type: GET_REQUEST_ERROR,

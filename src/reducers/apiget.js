@@ -4,6 +4,7 @@ import {
   GET_REQUEST_PENDING,
   INITIAL_API_GET_STATE,
 } from '../constants';
+import getPokemon from '../async/fetchRequest';
 
 function apiget(state = INITIAL_API_GET_STATE, action) {
   switch(action.type) {
@@ -14,21 +15,18 @@ function apiget(state = INITIAL_API_GET_STATE, action) {
       };
     case GET_REQUEST_SUCCESS:
       return {
-        ...state,
         pending: false,
-        response: action.response
+        pokemons: action.pokemons,
       };
-    case GET_REQUEST_ERROR:
-      return {
-        ...state,
-        pending: false,
-        error: action.error
-      };
+    // case GET_REQUEST_ERROR:
+    //   return {
+    //     ...state,
+    //     pending: false,
+    //     error: action.error
+    //   };
     default:
       return state;
   }
 }
 
-export const getResponse = state => state.response;
-export const getResponsePending = state => state.pending;
-export const getResponseError = state => state.error;
+export default apiget;

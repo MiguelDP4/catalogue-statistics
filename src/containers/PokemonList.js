@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { changeFilter, changeOrder } from '../actions/index';
+import { changeFilter, changeOrder, searchAllPokemon } from '../actions/index';
 import Pokemon from '../components/Pokemon';
 import logo from '../logo.svg';
 import Filter from '../components/PokemonFilter';
@@ -10,291 +10,22 @@ import { POKEMON_NAME, DEX_NUMBER, POKEMON_TYPE } from '../constants';
 class PokemonList extends React.Component {
   constructor() {
     super();
-    this.pokemonList = [
-      {
-        "id": 1,
-        "name": "bulbasaur",
-        "types": ["grass", "poison"],
-        "stats": {
-          "hp": 45,
-          "attack": 49,
-          "defense": 49,
-          "specialattack": 65,
-          "specialdefense": 65,
-          "speed": 45,
-        },
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/1.png",
-      },
-      {
-        "id": 2,
-        "name": "ivysaur",
-        "types": ["grass", "poison"],
-        "stats": {
-          "hp": 60,
-          "attack": 62,
-          "defense": 63,
-          "specialattack": 80,
-          "specialdefense": 80,
-          "speed": 60,
-        },
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/2.png",
-      },
-      {
-        "id": 3,
-        "name": "venusaur",
-        "types": ["grass", "poison"],
-        "stats": {
-          "hp": 80,
-          "attack": 82,
-          "defense": 83,
-          "specialattack": 100,
-          "specialdefense": 100,
-          "speed": 80,
-        },
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/3.png",
-      },
-      {
-        "id": 4,
-        "name": "charmander",
-        "types": ["fire"],
-        "stats": {
-          "hp": 80,
-          "attack": 82,
-          "defense": 83,
-          "specialattack": 100,
-          "specialdefense": 100,
-          "speed": 80,
-        },
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/4.png",
-      },
-      {
-        "id": 5,
-        "name": "charmeleon",
-        "types": ["fire"],
-        "stats": {
-          "hp": 80,
-          "attack": 82,
-          "defense": 83,
-          "specialattack": 100,
-          "specialdefense": 100,
-          "speed": 80,
-        },
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/5.png",
-      },
-      {
-        "id": 6,
-        "name": "charizard",
-        "types": ["fire", "flying"],
-        "stats": {
-          "hp": 80,
-          "attack": 82,
-          "defense": 83,
-          "specialattack": 100,
-          "specialdefense": 100,
-          "speed": 80,
-        },
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/6.png",
-      },
-      {
-        "id": 7,
-        "name": "squirtle",
-        "types": ["water"],
-        "stats": {
-          "hp": 80,
-          "attack": 82,
-          "defense": 83,
-          "specialattack": 100,
-          "specialdefense": 100,
-          "speed": 80,
-        },
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/7.png",
-      },
-      {
-        "id": 8,
-        "name": "wartortle",
-        "types": ["water"],
-        "stats": {
-          "hp": 80,
-          "attack": 82,
-          "defense": 83,
-          "specialattack": 100,
-          "specialdefense": 100,
-          "speed": 80,
-        },
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/8.png",
-      },
-      {
-        "id": 9,
-        "name": "blastoise",
-        "types": ["water"],
-        "stats": {
-          "hp": 80,
-          "attack": 82,
-          "defense": 83,
-          "specialattack": 100,
-          "specialdefense": 100,
-          "speed": 80,
-        },
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/9.png",
-      },
-      {
-        "id": 10,
-        "name": "caterpie",
-        "types": ["bug"],
-        "stats": {
-          "hp": 80,
-          "attack": 82,
-          "defense": 83,
-          "specialattack": 100,
-          "specialdefense": 100,
-          "speed": 80,
-        },
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/10.png",
-      },
-      {
-        "id": 11,
-        "name": "metapod",
-        "types": ["bug"],
-        "stats": {
-          "hp": 80,
-          "attack": 82,
-          "defense": 83,
-          "specialattack": 100,
-          "specialdefense": 100,
-          "speed": 80,
-        },
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/11.png",
-      },
-      {
-        "id": 12,
-        "name": "butterfree",
-        "types": ["bug", "flying"],
-        "stats": {
-          "hp": 80,
-          "attack": 82,
-          "defense": 83,
-          "specialattack": 100,
-          "specialdefense": 100,
-          "speed": 80,
-        },
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/12.png",
-      },
-      {
-        "id": 13,
-        "name": "weedle",
-        "types": ["bug"],
-        "stats": {
-          "hp": 80,
-          "attack": 82,
-          "defense": 83,
-          "specialattack": 100,
-          "specialdefense": 100,
-          "speed": 80,
-        },
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/13.png",
-      },
-      {
-        "id": 14,
-        "name": "kakuna",
-        "types": ["bug"],
-        "stats": {
-          "hp": 80,
-          "attack": 82,
-          "defense": 83,
-          "specialattack": 100,
-          "specialdefense": 100,
-          "speed": 80,
-        },
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/14.png",
-      },
-      {
-        "id": 15,
-        "name": "beedrill",
-        "types": ["bug", "poison"],
-        "stats": {
-          "hp": 80,
-          "attack": 82,
-          "defense": 83,
-          "specialattack": 100,
-          "specialdefense": 100,
-          "speed": 80,
-        },
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/15.png",
-      },
-      {
-        "id": 16,
-        "name": "pidgey",
-        "types": ["normal", "flying"],
-        "stats": {
-          "hp": 80,
-          "attack": 82,
-          "defense": 83,
-          "specialattack": 100,
-          "specialdefense": 100,
-          "speed": 80,
-        },
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/16.png",
-      },
-      {
-        "id": 17,
-        "name": "pidgeotto",
-        "types": ["normal", "flying"],
-        "stats": {
-          "hp": 80,
-          "attack": 82,
-          "defense": 83,
-          "specialattack": 100,
-          "specialdefense": 100,
-          "speed": 80,
-        },
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/17.png",
-      },
-      {
-        "id": 18,
-        "name": "pidgeot",
-        "types": ["normal", "flying"],
-        "stats": {
-          "hp": 80,
-          "attack": 82,
-          "defense": 83,
-          "specialattack": 100,
-          "specialdefense": 100,
-          "speed": 80,
-        },
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/18.png",
-      },
-      {
-        "id": 19,
-        "name": "rattata",
-        "types": ["normal"],
-        "stats": {
-          "hp": 80,
-          "attack": 82,
-          "defense": 83,
-          "specialattack": 100,
-          "specialdefense": 100,
-          "speed": 80,
-        },
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/19.png",
-      },
-      {
-        "id": 20,
-        "name": "raticate",
-        "types": ["normal"],
-        "stats": {
-          "hp": 80,
-          "attack": 82,
-          "defense": 83,
-          "specialattack": 100,
-          "specialdefense": 100,
-          "speed": 80,
-        },
-        "image": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/icons/20.png",
-      },
-    ];
 
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.startComponentRender = this.startComponentRender.bind(this);
+  }
+
+  componentWillMount() {
+    const { searchPokemon } = this.props;
+    searchPokemon();
+  }
+
+  startComponentRender() {
+    const { pokemons } = this.props;
+    console.log(pokemons.pending);
+    if(pokemons.pending) return false;
+    return true;
   }
 
   handleClick(event) {
@@ -333,10 +64,12 @@ class PokemonList extends React.Component {
 
   filterPokemon(pokemonList, filters, order) {
     let newArray = [];
+    if(pokemonList.length === 0) return newArray;
     if (filters.type !== 'all') {
       newArray = pokemonList.filter(pokemon => pokemon.types.includes(filters.type));
       newArray = newArray.filter(pokemon => pokemon.name.toLowerCase().includes(filters.name.toLowerCase()));
     } else {
+      console.log(pokemonList.map(pokemon => pokemon));
       newArray = [...pokemonList]
       newArray = newArray.filter(pokemon => pokemon.name.toLowerCase().includes(filters.name.toLowerCase()));
     }
@@ -367,12 +100,11 @@ class PokemonList extends React.Component {
         return 0;
       });
     }
-    console.log(newArray);
     return newArray;
   }
 
   render() {
-    const { filters, order } = this.props;
+    const { filters, order, pokemons, pending } = this.props;
     return (
       <div className='page-container'>
         <header className="App-header">
@@ -381,13 +113,14 @@ class PokemonList extends React.Component {
         </header>
         <div>
           <div className='pokemon-list'>
-              {this.filterPokemon(this.pokemonList, filters, order).map(pokemon => (
-                <Pokemon 
-                key={pokemon.name}
-                pokemonObject={pokemon}
-                handleClick={this.handleClick}
-                />
-              ))}
+              { this.startComponentRender() ? 
+                this.filterPokemon(pokemons.pokemons, filters, order).map(pokemon => (
+                  <Pokemon 
+                  key={pokemon.name}
+                  pokemonObject={pokemon}
+                  handleClick={this.handleClick}
+                  />
+                )) : <div>LOADING</div> }
           </div>
         </div>
       </div>
@@ -398,11 +131,13 @@ class PokemonList extends React.Component {
 const mapStateToProps = state => ({
   filters: state.filters,
   order: state.order,
+  pokemons: state.pokemons,
 });
 
 const mapDispatchToProps = dispatch => ({
   changeFilter: objFilter => dispatch(changeFilter(objFilter)),
   changeOrder: order => dispatch(changeOrder(order)),
+  searchPokemon: () => dispatch(searchAllPokemon()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PokemonList);

@@ -7,13 +7,14 @@ async function fetchRequest(request) {
   }
 }
 
-function searchPokemon(dexNumber) {
+async function searchPokemon(dexNumber) {
   const foundPokemon = {};
-  fetchRequest(`https://pokeapi.co/api/v2/pokemon/${dexNumber}`).then(data => data.json())
+  await fetchRequest(`https://pokeapi.co/api/v2/pokemon/${dexNumber}`).then(data => data.json())
   .then(pokemon => {
     foundPokemon.id = pokemon.id;
     foundPokemon.name = pokemon.name;
     foundPokemon.types = [pokemon.types[0], pokemon.types[1]];
+    foundPokemon.stats = pokemon.stats;
     foundPokemon.stats = {
       "hp": pokemon.stats[0].base_stat,
       "attack": pokemon.stats[1].base_stat,
@@ -24,6 +25,15 @@ function searchPokemon(dexNumber) {
     };
     foundPokemon.image = pokemon.sprites.front_default
     });
+    return foundPokemon;
 }
 
-export default searchPokemon;
+async function searchAllPokemon() {
+  let allPokemon = [];
+  for(let i = 1; i <= 10; i++) {
+    allPokemon = [...allPokemon, await searchPokemon(i)];
+  }
+  return allPokemon;
+}
+
+export default searchAllPokemon;
