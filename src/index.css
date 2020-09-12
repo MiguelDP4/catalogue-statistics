@@ -163,3 +163,25 @@ body {
 .pokemon-card:hover {
   background-color: #004D40;
 }
+
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
+
+.loading {
+  margin: 32px;
+  width: 35vw;
+  height: auto;
+  animation: rotation 2s infinite linear;
+}
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}

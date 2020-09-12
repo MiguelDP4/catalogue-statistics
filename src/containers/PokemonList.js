@@ -4,6 +4,7 @@ import { PropTypes } from 'prop-types';
 import { changeFilter, changeOrder, searchAllPokemon } from '../actions/index';
 import Pokemon from '../components/Pokemon';
 import logo from '../logo.svg';
+import loader from '../Pokeball.svg';
 import Filter from '../components/PokemonFilter';
 import { POKEMON_NAME, DEX_NUMBER, POKEMON_TYPE } from '../constants';
 
@@ -119,7 +120,10 @@ class PokemonList extends React.Component {
                   pokemonObject={pokemon}
                   handleClick={this.handleClick}
                   />
-                )) : <div>LOADING</div> }
+                )) : <div className="loader-container">
+                  <img src={loader} className="loading" alt="loader" />
+                  <span>Loading, please wait...</span>
+                </div>}
           </div>
         </div>
       </div>

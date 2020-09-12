@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="Layer_2"
+   x="0px"
+   y="0px"
+   width="696.00598"
+   height="696.00598"
+   viewBox="0 0 696.00598 696.00598"
+   enable-background="new 0 0 864 864"
+   xml:space="preserve"
+   sodipodi:docname="Pokeball.svg"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"><metadata
+   id="metadata885"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+   id="defs883" /><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="1528"
+   inkscape:window-height="836"
+   id="namedview881"
+   showgrid="false"
+   inkscape:zoom="0.76157407"
+   inkscape:cx="432"
+   inkscape:cy="432"
+   inkscape:window-x="1672"
+   inkscape:window-y="27"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="Layer_2" />
+<circle
+   cx="348.00299"
+   cy="348.00302"
+   r="348.00299"
+   id="circle870"
+   style="clip-rule:evenodd;fill-rule:evenodd" />
+<g
+   id="g876"
+   transform="translate(-99.17503,-99.635998)">
+	<path
+   d="m 573.713,473.543 c -11.995,58.904 -64.089,103.231 -126.535,103.231 -62.447,0 -114.54,-44.327 -126.535,-103.231 H 141.169 c 13.155,157.485 145.125,281.202 306.008,281.202 160.884,0 292.855,-123.717 306.011,-281.202 z"
+   id="path872"
+   inkscape:connector-curvature="0"
+   style="clip-rule:evenodd;fill:#ffffff;fill-rule:evenodd" />
+	<path
+   d="m 447.178,357.277 c -49.904,0 -90.36,40.456 -90.36,90.362 0,49.904 40.456,90.361 90.36,90.361 49.906,0 90.361,-40.457 90.361,-90.361 0,-49.906 -40.455,-90.362 -90.361,-90.362 z m 10e-4,134.941 c -24.621,0 -44.579,-19.958 -44.579,-44.578 0,-24.621 19.958,-44.579 44.579,-44.579 24.62,0 44.578,19.958 44.578,44.579 0,24.62 -19.958,44.578 -44.578,44.578 z"
+   id="path874"
+   inkscape:connector-curvature="0"
+   style="clip-rule:evenodd;fill:#ffffff;fill-rule:evenodd" />
+</g>
+<path
+   d="m 348.00296,218.868 c 62.446,0 114.54,44.327 126.535,103.232 h 179.475 C 640.85796,164.615 508.88596,40.897 348.00196,40.897 187.11996,40.897 55.149964,164.615 41.993964,322.1 H 221.46796 c 11.995,-58.905 64.087,-103.232 126.535,-103.232 z"
+   id="path878"
+   inkscape:connector-curvature="0"
+   style="clip-rule:evenodd;fill:#ed1c24;fill-rule:evenodd" />
+</svg>
