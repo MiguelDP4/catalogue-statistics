@@ -69,7 +69,6 @@ class PokemonList extends React.Component {
       newArray = pokemonList.filter(pokemon => pokemon.types.includes(filters.type));
       newArray = newArray.filter(pokemon => pokemon.name.toLowerCase().includes(filters.name.toLowerCase()));
     } else {
-      console.log(pokemonList.map(pokemon => pokemon));
       newArray = [...pokemonList]
       newArray = newArray.filter(pokemon => pokemon.name.toLowerCase().includes(filters.name.toLowerCase()));
     }
