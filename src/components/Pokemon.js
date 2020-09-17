@@ -13,7 +13,7 @@ const Pokemon = props => {
     >
       <h3 className="pokemon-card-h3">{pokemonObject.name.toUpperCase()}</h3>
       <div className="image-container">
-        <img src={pokemonObject.image} className="pokemon-card-img" alt={`${pokemonObject.name}-sprite`} />
+        <img src={pokemonObject.image} className="pokemon-card-img" loading="lazy" alt={`${pokemonObject.name}-sprite`} />
       </div>
       <div className="type-container">
         <b>TYPE: </b>

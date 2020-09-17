@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { changeFilter, changeOrder, searchAllPokemon } from '../actions/index';
+import { changeFilter, changeOrder, searchAPokemon } from '../actions/index';
 import Pokemon from '../components/Pokemon';
 import logo from '../logo.svg';
 import loader from '../Pokeball.svg';
@@ -20,7 +20,9 @@ class PokemonList extends React.Component {
   // eslint-disable-next-line react/no-deprecated
   componentWillMount() {
     const { searchPokemon } = this.props;
-    searchPokemon();
+    for(let i = 1; i <= 807; i+=1) {
+      searchPokemon(i);
+    }
   }
 
   startComponentRender() {
@@ -158,7 +160,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   changeFilter: objFilter => dispatch(changeFilter(objFilter)),
   changeOrder: order => dispatch(changeOrder(order)),
-  searchPokemon: () => dispatch(searchAllPokemon()),
+  searchPokemon: (index) => dispatch(searchAPokemon(index)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PokemonList);

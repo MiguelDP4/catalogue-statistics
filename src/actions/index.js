@@ -5,7 +5,7 @@ import {
   GET_REQUEST_SUCCESS,
   GET_REQUEST_PENDING,
 } from '../constants';
-import getAllPokemon from '../async/fetchRequest';
+import getPokemon from '../async/fetchRequest';
 
 export const changeFilter = objFilter => ({
   type: CHANGE_FILTER,
@@ -27,11 +27,11 @@ const APIcallSuccess = pokemons => ({
   pokemons,
 });
 
-export function searchAllPokemon() {
+export function searchAPokemon(index) {
   // eslint-disable-next-line func-names
   return async function (dispatch) {
     dispatch(APIcallPending());
-    const response = await getAllPokemon();
+    const response = await getPokemon(index);
     return dispatch(APIcallSuccess(response));
   };
 }
