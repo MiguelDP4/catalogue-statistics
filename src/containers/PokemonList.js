@@ -78,7 +78,17 @@ class PokemonList extends React.Component {
         .includes(filters.name.toLowerCase()));
     }
     if (order.orderBy === DEX_NUMBER) {
-      return this.newArray;
+      return this.newArray.sort((a,b) => {
+        const numA = a.id;
+        const numB = b.id;
+        if(numA < numB) {
+          return -1;
+        }
+        if(numA > numB) {
+          return 1;
+        }
+        return 0;
+      });
     } if (order.orderBy === POKEMON_NAME) {
       this.newArray.sort((a, b) => {
         const nameA = a.name.toUpperCase();
@@ -118,8 +128,8 @@ class PokemonList extends React.Component {
           <Filter handleChange={this.handleChange} />
         </header>
         <div className="pokemon-list">
-          { this.startComponentRender() ?
-            this.filterPokemon(pokemons.pokemons, filters, order).map(pokemon => (
+          { this.startComponentRender()
+            ? this.filterPokemon(pokemons.pokemons, filters, order).map(pokemon => (
               <Pokemon
                 key={pokemon.name}
                 pokemonObject={pokemon}
@@ -129,14 +139,20 @@ class PokemonList extends React.Component {
               <div className="loader-container">
                 <img src={loader} className="loading" alt="loader" />
                 <span>Loading, please wait...</span>
-                <span>{Math.round(10000*pokemons.pokemons.length/807.0)/100}%</span>
+                <span>
+                  {Math.round((10000 * pokemons.pokemons.length) / 807.0) / 100}
+                  %
+                </span>
                 <span className="load-bar-container">
-                  <div className="load-bar" style={
+                  <div
+                    className="load-bar"
+                    style={
                     {
-                      width: `${Math.round(10000*pokemons.pokemons.length/807.0)/100}%`
+                      width: `${Math.round((10000 * pokemons.pokemons.length) / 807.0) / 100}%`,
                     }
-                  }></div>
-                  </span>
+                  }
+                  />
+                </span>
               </div>
             )}
         </div>
