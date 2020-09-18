@@ -1,13 +1,13 @@
-async function fetchRequest(request) {
+const fetchRequest = async request => {
   const response = await fetch(request);
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);
   } else {
     return response;
   }
-}
+};
 
-async function searchPokemon(dexNumber) {
+const searchPokemon = async dexNumber => {
   const foundPokemon = {};
   await fetchRequest(`https://pokeapi.co/api/v2/pokemon/${dexNumber}`).then(data => data.json())
     .then(pokemon => {
@@ -39,6 +39,6 @@ async function searchPokemon(dexNumber) {
       foundPokemon.image = pokemon.sprites.front_default;
     });
   return foundPokemon;
-}
+};
 
 export default searchPokemon;

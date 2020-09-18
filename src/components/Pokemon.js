@@ -115,8 +115,7 @@ const Pokemon = props => {
 };
 
 Pokemon.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  pokemonObject: PropTypes.object.isRequired,
+  pokemonObject: PropTypes.objectOf.isRequired,
   handleClick: PropTypes.func.isRequired,
 };
 

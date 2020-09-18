@@ -22,6 +22,14 @@ body {
   align-items: center;
   padding-left: 16px;
   padding-right: 16px;
+  position: sticky;
+  top: 0;
+}
+
+.page-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .filter-container {
@@ -57,6 +65,7 @@ body {
 }
 
 .pokemon-list {
+  flex: 1;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -183,6 +192,22 @@ body {
 
 .pokemon-card:hover {
   background-color: #004d40;
+}
+
+.load-bar-container {
+  display: flex;
+  border-left: solid 1px #dffffa;
+  border-right: solid 1px #dffffa;
+  align-items: center;
+  padding-left: 8px;
+  padding-right: 8px;
+  height: 24px;
+  width: 35vw;
+}
+
+.load-bar {
+  height: 8px;
+  background-color: #dffffa;
 }
 
 .loader-container {

@@ -27,14 +27,11 @@ const APIcallSuccess = pokemons => ({
   pokemons,
 });
 
-export function searchAPokemon(index) {
-  // eslint-disable-next-line func-names
-  return async function (dispatch) {
-    dispatch(APIcallPending());
-    const response = await getPokemon(index);
-    return dispatch(APIcallSuccess(response));
-  };
-}
+export const searchAPokemon = index => async dispatch => {
+  dispatch(APIcallPending());
+  const response = await getPokemon(index);
+  return dispatch(APIcallSuccess(response));
+};
 
 export const APIcallError = error => ({
   type: GET_REQUEST_ERROR,

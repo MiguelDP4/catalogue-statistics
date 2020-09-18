@@ -20,14 +20,14 @@ class PokemonList extends React.Component {
   // eslint-disable-next-line react/no-deprecated
   componentWillMount() {
     const { searchPokemon } = this.props;
-    for(let i = 1; i <= 807; i+=1) {
+    for (let i = 1; i <= 807; i += 1) {
       searchPokemon(i);
     }
   }
 
   startComponentRender() {
     const { pokemons } = this.props;
-    if (pokemons.pending) return false;
+    if (pokemons.pokemons.length < 807) return false;
     return true;
   }
 
@@ -117,22 +117,28 @@ class PokemonList extends React.Component {
           <img src={logo} className="App-logo" alt="logo" />
           <Filter handleChange={this.handleChange} />
         </header>
-        <div>
-          <div className="pokemon-list">
-            { this.startComponentRender()
-              ? this.filterPokemon(pokemons.pokemons, filters, order).map(pokemon => (
-                <Pokemon
-                  key={pokemon.name}
-                  pokemonObject={pokemon}
-                  handleClick={this.handleClick}
-                />
-              )) : (
-                <div className="loader-container">
-                  <img src={loader} className="loading" alt="loader" />
-                  <span>Loading, please wait...</span>
-                </div>
-              )}
-          </div>
+        <div className="pokemon-list">
+          { this.startComponentRender() ?
+            this.filterPokemon(pokemons.pokemons, filters, order).map(pokemon => (
+              <Pokemon
+                key={pokemon.name}
+                pokemonObject={pokemon}
+                handleClick={this.handleClick}
+              />
+            )) : (
+              <div className="loader-container">
+                <img src={loader} className="loading" alt="loader" />
+                <span>Loading, please wait...</span>
+                <span>{Math.round(10000*pokemons.pokemons.length/807.0)/100}%</span>
+                <span className="load-bar-container">
+                  <div className="load-bar" style={
+                    {
+                      width: `${Math.round(10000*pokemons.pokemons.length/807.0)/100}%`
+                    }
+                  }></div>
+                  </span>
+              </div>
+            )}
         </div>
       </div>
     );
@@ -140,12 +146,9 @@ class PokemonList extends React.Component {
 }
 
 PokemonList.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  pokemons: PropTypes.object.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  order: PropTypes.object.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  filters: PropTypes.object.isRequired,
+  pokemons: PropTypes.objectOf.isRequired,
+  order: PropTypes.objectOf.isRequired,
+  filters: PropTypes.objectOf.isRequired,
   changeFilter: PropTypes.func.isRequired,
   changeOrder: PropTypes.func.isRequired,
   searchPokemon: PropTypes.func.isRequired,
@@ -160,7 +163,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   changeFilter: objFilter => dispatch(changeFilter(objFilter)),
   changeOrder: order => dispatch(changeOrder(order)),
-  searchPokemon: (index) => dispatch(searchAPokemon(index)),
+  searchPokemon: index => dispatch(searchAPokemon(index)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PokemonList);
