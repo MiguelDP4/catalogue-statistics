@@ -11,7 +11,6 @@ class PokemonList extends React.Component {
     super();
 
     this.handleClick = this.handleClick.bind(this);
-    this.handleChange = this.handleChange.bind(this);
     this.startComponentRender = this.startComponentRender.bind(this);
   }
 
@@ -27,22 +26,6 @@ class PokemonList extends React.Component {
     const { pokemons } = this.props;
     if (pokemons.pokemons.length < 807) return false;
     return true;
-  }
-
-  handleChange() {
-    const { changeFilter, changeOrder } = this.props;
-    const pokemonName = document.getElementById('pokemon-name');
-    const typesButton = document.getElementById('pokemon-type');
-    const pokemonOrder = document.getElementById('pokemon-order');
-    const newFilter = {
-      type: typesButton.value,
-      name: pokemonName.value,
-    };
-    const newOrder = {
-      orderBy: pokemonOrder.value,
-    };
-    changeFilter(newFilter);
-    changeOrder(newOrder);
   }
 
   filterPokemon(pokemonList, filters, order) {
@@ -151,8 +134,6 @@ PokemonList.propTypes = {
   }).isRequired,
   order: PropTypes.objectOf(PropTypes.string).isRequired,
   filters: PropTypes.objectOf(PropTypes.string).isRequired,
-  changeFilter: PropTypes.func.isRequired,
-  changeOrder: PropTypes.func.isRequired,
   searchPokemon: PropTypes.func.isRequired,
 };
 
@@ -164,8 +145,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  changeFilter: objFilter => dispatch(changeFilter(objFilter)),
-  changeOrder: order => dispatch(changeOrder(order)),
   searchPokemon: index => dispatch(searchAPokemon(index)),
   selectPokemon: name => dispatch(changeSelectedPokemon(name)),
 });
