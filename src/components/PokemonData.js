@@ -15,7 +15,6 @@ class PokemonData extends React.Component {
 
   render() {
     const { pokemonName, pokemons } = this.props;
-    console.log(pokemons);
     const pokemonObject = pokemons.pokemons.find(
       pokemon => pokemon.name === pokemonName );
 
