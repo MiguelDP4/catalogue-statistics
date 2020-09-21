@@ -4,6 +4,7 @@ import {
   GET_REQUEST_ERROR,
   GET_REQUEST_SUCCESS,
   GET_REQUEST_PENDING,
+  CHANGE_POKEMON,
 } from '../constants';
 import getPokemon from '../async/fetchRequest';
 
@@ -15,6 +16,11 @@ export const changeFilter = objFilter => ({
 export const changeOrder = order => ({
   type: CHANGE_ORDER,
   order,
+});
+
+export const changeSelectedPokemon = selectedPokemon => ({
+  type: CHANGE_POKEMON,
+  selectedPokemon,
 });
 
 export const APIcallPending = pending => ({

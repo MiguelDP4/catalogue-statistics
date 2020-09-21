@@ -1,26 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-const Pokemon = props => {
-  const { pokemonObject, handleClick } = props;
-  return (
-    <button
-      id={`pokemon-card-${pokemonObject.name}`}
-      className="pokemon-card"
-      onClick={handleClick}
-      href=""
-      type="button"
+class PokemonData extends React.Component {
+  constructor() {
+    super();
+
+    this.closeWindow = this.closeWindow.bind(this);
+  }
+
+  closeWindow() {
+
+  }
+
+  render() {
+    const { pokemonName, pokemons } = this.props;
+    console.log(pokemons);
+    const pokemonObject = pokemons.pokemons.find(
+      pokemon => pokemon.name === pokemonName );
+
+    return ( pokemonObject ? 
+    <div
+      id={`pokemon-data`}
+      className="pokemon-card-big"
     >
       <h3 className="pokemon-card-h3">{pokemonObject.name.toUpperCase()}</h3>
-      <div className="image-container">
+      <div className="image-container-big">
         <img src={pokemonObject.image} className="pokemon-card-img" loading="lazy" alt={`${pokemonObject.name}-sprite`} />
       </div>
-      <div className="type-container">
+      <div className="type-container-big">
         <b>TYPE: </b>
         <span>{pokemonObject.types[0]}</span>
         <span>{pokemonObject.types[1] ? ` / ${pokemonObject.types[1]}` : ''}</span>
       </div>
-      <div className="stats-container">
+      <div className="stats-container-big">
         <div className="stats-names">
           <span className="stat-name">
             HP:
@@ -110,25 +123,23 @@ const Pokemon = props => {
           </span>
         </div>
       </div>
-    </button>
-  );
+    </div>
+    :
+    <div className="pokemon-card-big" >
+      <h2>INVALID POKEMON</h2>
+    </div>
+    );
+  };
+}
+
+const mapStateToProps = state => ({
+  pokemons: state.pokemons,
+  selectedPokemon: state.selectedPokemon,
+});
+
+PokemonData.propTypes = {
+  pokemons: PropTypes.objectOf.isRequired,
+  pokemonName: PropTypes.string.isRequired,
 };
 
-Pokemon.propTypes = {
-  pokemonObject: PropTypes.shape({
-    id: PropTypes.number,
-    name: PropTypes.string,
-    types: PropTypes.array,
-    stats: PropTypes.shape({
-      hp: PropTypes.number,
-      attack: PropTypes.number,
-      defense: PropTypes.number,
-      specialattack: PropTypes.number,
-      specialdefense: PropTypes.number,
-      speed: PropTypes.number,
-    }),
-  }).isRequired,
-  handleClick: PropTypes.func.isRequired,
-};
-
-export default Pokemon;
+export default connect(mapStateToProps, null)(PokemonData);

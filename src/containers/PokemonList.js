@@ -1,11 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { changeFilter, changeOrder, searchAPokemon } from '../actions/index';
+import { changeFilter, changeOrder, searchAPokemon, changeSelectedPokemon } from '../actions/index';
 import Pokemon from '../components/Pokemon';
-import logo from '../logo.svg';
 import loader from '../Pokeball.svg';
-import Filter from '../components/PokemonFilter';
 import { POKEMON_NAME, DEX_NUMBER, POKEMON_TYPE } from '../constants';
 
 class PokemonList extends React.Component {
@@ -29,24 +27,6 @@ class PokemonList extends React.Component {
     const { pokemons } = this.props;
     if (pokemons.pokemons.length < 807) return false;
     return true;
-  }
-
-  handleClick(event) {
-    this.element = event.target;
-    while (!this.element.id.includes('pokemon-card-')) {
-      this.element = this.element.parentElement;
-    }
-    if (this.element.className === 'pokemon-card') {
-      this.element.className = 'pokemon-card-big';
-      this.element.children[1].className = 'image-container-big';
-      this.element.children[2].className = 'type-container-big';
-      this.element.children[3].className = 'stats-container-big';
-    } else if (this.element.className === 'pokemon-card-big') {
-      this.element.className = 'pokemon-card';
-      this.element.children[1].className = 'image-container';
-      this.element.children[2].className = 'type-container';
-      this.element.children[3].className = 'stats-container';
-    }
   }
 
   handleChange() {
@@ -117,16 +97,19 @@ class PokemonList extends React.Component {
     return this.newArray;
   }
 
+  handleClick(event) {
+    const { selectPokemon } = this.props;
+    const idName = event.target.id;
+    const pokemonName = idName.split('-')[idName.split('-').length - 1];
+    selectPokemon(pokemonName);
+  }
+
   render() {
     const {
       filters, order, pokemons,
     } = this.props;
     return (
       <div className="page-container">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <Filter handleChange={this.handleChange} />
-        </header>
         <div className="pokemon-list">
           { this.startComponentRender()
             ? this.filterPokemon(pokemons.pokemons, filters, order).map(pokemon => (
@@ -158,13 +141,16 @@ class PokemonList extends React.Component {
         </div>
       </div>
     );
-  }
+  };
 }
 
 PokemonList.propTypes = {
-  pokemons: PropTypes.objectOf.isRequired,
-  order: PropTypes.objectOf.isRequired,
-  filters: PropTypes.objectOf.isRequired,
+  pokemons: PropTypes.shape({
+    pokemons: PropTypes.array,
+    pending: PropTypes.bool,
+  }).isRequired,
+  order: PropTypes.objectOf(PropTypes.string).isRequired,
+  filters: PropTypes.objectOf(PropTypes.string).isRequired,
   changeFilter: PropTypes.func.isRequired,
   changeOrder: PropTypes.func.isRequired,
   searchPokemon: PropTypes.func.isRequired,
@@ -174,12 +160,14 @@ const mapStateToProps = state => ({
   filters: state.filters,
   order: state.order,
   pokemons: state.pokemons,
+  selectedPokemon: state.selectedPokemon,
 });
 
 const mapDispatchToProps = dispatch => ({
   changeFilter: objFilter => dispatch(changeFilter(objFilter)),
   changeOrder: order => dispatch(changeOrder(order)),
   searchPokemon: index => dispatch(searchAPokemon(index)),
+  selectPokemon: name => dispatch(changeSelectedPokemon(name)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PokemonList);
