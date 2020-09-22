@@ -2,6 +2,7 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import Pokemon from '../components/Pokemon';
 import { POKEMON_NAME, DEX_NUMBER, POKEMON_TYPE } from '../constants';
+import { Link } from 'react-router-dom';
 
 const filterPokemon = (pokemonList, filters, order) => {
   let newArray = [];
@@ -62,11 +63,12 @@ const PokemonList = props => {
     <div className="page-container">
       <div className="pokemon-list">
         {filterPokemon(pokemons, filters, order).map(pokemon => (
+          <Link to={`/${pokemon.name}`} onClick={handleClick}>
             <Pokemon
               key={pokemon.name}
               pokemonObject={pokemon}
-              handleClick={handleClick}
             />
+          </Link>
           ))}
       </div>
     </div>
