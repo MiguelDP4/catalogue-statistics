@@ -23,7 +23,7 @@ export const INITIAL_API_GET_STATE = {
 export const INITIAL_STORE_STATE = {
   order: INITIAL_ORDER_STATE,
   filters: INITIAL_FILTER_STATE,
-  apiget: INITIAL_API_GET_STATE,
+  pokemons: INITIAL_API_GET_STATE,
 };
 export const POKEMON_TYPES = [
   'normal',
