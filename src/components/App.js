@@ -54,7 +54,7 @@ class App extends React.Component {
   }
 
   render () {
-    const { filters, order, pokemons, selectedPokemon } = this.props;
+    const { filters, order, pokemons } = this.props;
     return (
     <Router>
       <div className="App">
@@ -70,12 +70,17 @@ class App extends React.Component {
             order={order} />
           )}
           />
-          <Route path={`/${selectedPokemon}`} 
+          <div>
+            {pokemons.pokemons.map(pokemon => (
+              <Route path={`/${pokemon.name}`} 
                 render={(props) => (
                 <PokemonData {...props} 
-                pokemonName={selectedPokemon}
-                pokemons={pokemons.pokemons}/>
-          )} />
+                pokemonObject={pokemon}/>
+                )} />
+            ))}
+            
+          </div>
+          
         </Switch>)
         : <Spinner pokemons={pokemons.pokemons} /> }
 

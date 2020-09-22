@@ -28,7 +28,6 @@ body {
 }
 
 .page-container {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -73,12 +72,16 @@ body {
   justify-content: center;
 }
 
+.pokemon-list a {
+  text-decoration: none;
+  margin: 16px;
+}
+
 .pokemon-card {
   -webkit-box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
   width: 192px;
   height: 192px;
-  margin: 16px;
   background-color: #065;
   transition: background-color 0.3s;
   padding: 8px;
@@ -189,6 +192,17 @@ body {
   border: none;
   color: #dffffa;
   text-decoration: none;
+}
+
+.exit-button {
+  width: 5%;
+  height: auto;
+  min-width: 25px;
+  min-height: 25px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
 }
 
 .pokemon-card:hover {

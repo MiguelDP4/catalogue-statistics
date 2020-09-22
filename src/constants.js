@@ -7,6 +7,7 @@ export const CHANGE_POKEMON = 'CHANGE_POKEMON';
 export const POKEMON_TYPE = 'Pokemon Type';
 export const POKEMON_NAME = 'Pokemon Name';
 export const DEX_NUMBER = 'Pokedex Number';
+export const DEFAULT_SELECTED_POKEMON = 'bulbasaur';
 export const ORDER_CATEGORY = [DEX_NUMBER, POKEMON_NAME, POKEMON_TYPE];
 export const INITIAL_FILTER_STATE = {
   type: 'all',
