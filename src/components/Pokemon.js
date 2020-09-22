@@ -17,7 +17,7 @@ const Pokemon = props => {
         <span>{pokemonObject.types[0]}</span>
         <span>{pokemonObject.types[1] ? ` / ${pokemonObject.types[1]}` : ''}</span>
       </div>
-  </div>
+    </div>
   );
 };
 

@@ -1,12 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import PokemonList from '../containers/PokemonList';
-import PokemonData from '../components/PokemonData';
-import Spinner from './Spinner';
-import { searchAPokemon, changeFilter, changeOrder, changeSelectedPokemon } from '../actions/index';
-import Header from './Header';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import PokemonList from '../containers/PokemonList';
+import PokemonData from './PokemonData';
+import Spinner from './Spinner';
+import {
+  searchAPokemon, changeFilter, changeOrder, changeSelectedPokemon,
+} from '../actions/index';
+import Header from './Header';
 
 class App extends React.Component {
   constructor() {
@@ -53,41 +55,51 @@ class App extends React.Component {
     selectPokemon(pokemonName);
   }
 
-  render () {
+  render() {
     const { filters, order, pokemons } = this.props;
     return (
-    <Router>
-      <div className="App">
-        <Header handleChange={this.handleFilterChange} />
-        {this.startListRender() ? 
-        (<Switch>
-          <Route  path="/" exact 
-                  render={(props) => (
-            <PokemonList {...props}
-            handleClick={this.handlePokemonClick}
-            pokemons={pokemons.pokemons}
-            filters={filters}
-            order={order} />
-          )}
-          />
-          <div>
-            {pokemons.pokemons.map(pokemon => (
-              <Route path={`/${pokemon.name}`} 
-                render={(props) => (
-                <PokemonData {...props} 
-                pokemonObject={pokemon}/>
-                )} />
-            ))}
-            
-          </div>
-          
-        </Switch>)
-        : <Spinner pokemons={pokemons.pokemons} /> }
+      <Router>
+        <div className="App">
+          <Header handleChange={this.handleFilterChange} />
+          {this.startListRender()
+            ? (
+              <Switch>
+                <Route
+                  path="/"
+                  exact
+                  render={props => (
+                    <PokemonList
+                      {...props}
+                      handleClick={this.handlePokemonClick}
+                      pokemons={pokemons.pokemons}
+                      filters={filters}
+                      order={order}
+                    />
+                  )}
+                />
+                <div>
+                  {pokemons.pokemons.map(pokemon => (
+                    <Route
+                      path={`/${pokemon.name}`}
+                      render={props => (
+                        <PokemonData
+                          {...props}
+                          pokemonObject={pokemon}
+                        />
+                      )}
+                    />
+                  ))}
 
-      </div>
-    </Router>
+                </div>
+
+              </Switch>
+            )
+            : <Spinner pokemons={pokemons.pokemons} /> }
+
+        </div>
+      </Router>
     );
-  };
+  }
 }
 
 App.propTypes = {

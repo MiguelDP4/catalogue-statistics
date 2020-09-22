@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import loader from '../Pokeball.svg';
 
 const Spinner = props => {
@@ -22,7 +23,25 @@ const Spinner = props => {
         />
       </span>
     </div>
-  )
-}
+  );
+};
+
+Spinner.propTypes = {
+  pokemons: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      types: PropTypes.arrayOf(PropTypes.string),
+      stats: PropTypes.shape({
+        hp: PropTypes.number,
+        attack: PropTypes.number,
+        defense: PropTypes.number,
+        specialattack: PropTypes.number,
+        specialdefense: PropTypes.number,
+        speed: PropTypes.number,
+      }),
+    }),
+  ).isRequired,
+};
 
 export default Spinner;

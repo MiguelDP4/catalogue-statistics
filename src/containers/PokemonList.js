@@ -1,8 +1,8 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
+import { Link } from 'react-router-dom';
 import Pokemon from '../components/Pokemon';
 import { POKEMON_NAME, DEX_NUMBER, POKEMON_TYPE } from '../constants';
-import { Link } from 'react-router-dom';
 
 const filterPokemon = (pokemonList, filters, order) => {
   let newArray = [];
@@ -17,13 +17,13 @@ const filterPokemon = (pokemonList, filters, order) => {
       .includes(filters.name.toLowerCase()));
   }
   if (order.orderBy === DEX_NUMBER) {
-    return newArray.sort((a,b) => {
+    return newArray.sort((a, b) => {
       const numA = a.id;
       const numB = b.id;
-      if(numA < numB) {
+      if (numA < numB) {
         return -1;
       }
-      if(numA > numB) {
+      if (numA > numB) {
         return 1;
       }
       return 0;
@@ -54,31 +54,48 @@ const filterPokemon = (pokemonList, filters, order) => {
     });
   }
   return newArray;
-}
+};
 
 const PokemonList = props => {
-  const { handleClick, pokemons, filters, order } = props;
+  const {
+    handleClick, pokemons, filters, order,
+  } = props;
 
   return (
     <div className="page-container">
       <div className="pokemon-list">
         {filterPokemon(pokemons, filters, order).map(pokemon => (
-          <Link to={`/${pokemon.name}`} onClick={handleClick}>
+          <Link key={`${pokemon.name}-link`} to={`/${pokemon.name}`} onClick={handleClick}>
             <Pokemon
               key={pokemon.name}
               pokemonObject={pokemon}
             />
           </Link>
-          ))}
+        ))}
       </div>
     </div>
-    );
-}
+  );
+};
 
 PokemonList.propTypes = {
-  pokemons: PropTypes.array.isRequired,
+  pokemons: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      types: PropTypes.arrayOf(PropTypes.string),
+      stats: PropTypes.shape({
+        hp: PropTypes.number,
+        attack: PropTypes.number,
+        defense: PropTypes.number,
+        specialattack: PropTypes.number,
+        specialdefense: PropTypes.number,
+        speed: PropTypes.number,
+      }),
+    }),
+  ).isRequired,
   order: PropTypes.objectOf(PropTypes.string).isRequired,
   filters: PropTypes.objectOf(PropTypes.string).isRequired,
+  handleClick: PropTypes.func.isRequired,
 };
 
 export default PokemonList;
