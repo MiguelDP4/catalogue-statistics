@@ -4,8 +4,9 @@ import {
   GET_REQUEST_ERROR,
   GET_REQUEST_SUCCESS,
   GET_REQUEST_PENDING,
+  CHANGE_POKEMON,
 } from '../constants';
-import getAllPokemon from '../async/fetchRequest';
+import getPokemon from '../async/fetchRequest';
 
 export const changeFilter = objFilter => ({
   type: CHANGE_FILTER,
@@ -15,6 +16,11 @@ export const changeFilter = objFilter => ({
 export const changeOrder = order => ({
   type: CHANGE_ORDER,
   order,
+});
+
+export const changeSelectedPokemon = selectedPokemon => ({
+  type: CHANGE_POKEMON,
+  selectedPokemon,
 });
 
 export const APIcallPending = pending => ({
@@ -27,14 +33,11 @@ const APIcallSuccess = pokemons => ({
   pokemons,
 });
 
-export function searchAllPokemon() {
-  // eslint-disable-next-line func-names
-  return async function (dispatch) {
-    dispatch(APIcallPending());
-    const response = await getAllPokemon();
-    return dispatch(APIcallSuccess(response));
-  };
-}
+export const searchAPokemon = index => async dispatch => {
+  dispatch(APIcallPending());
+  const response = await getPokemon(index);
+  return dispatch(APIcallSuccess(response));
+};
 
 export const APIcallError = error => ({
   type: GET_REQUEST_ERROR,

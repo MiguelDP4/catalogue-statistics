@@ -14,7 +14,7 @@ function apiget(state = INITIAL_API_GET_STATE, action) {
     case GET_REQUEST_SUCCESS:
       return {
         pending: false,
-        pokemons: action.pokemons,
+        pokemons: [...state.pokemons, action.pokemons],
       };
     default:
       return state;

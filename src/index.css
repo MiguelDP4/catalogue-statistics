@@ -22,6 +22,14 @@ body {
   align-items: center;
   padding-left: 16px;
   padding-right: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
 }
 
 .filter-container {
@@ -57,10 +65,16 @@ body {
 }
 
 .pokemon-list {
+  flex: 1;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+.pokemon-list a {
+  text-decoration: none;
+  margin: 16px;
 }
 
 .pokemon-card {
@@ -68,7 +82,6 @@ body {
   box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
   width: 192px;
   height: 192px;
-  margin: 16px;
   background-color: #065;
   transition: background-color 0.3s;
   padding: 8px;
@@ -181,8 +194,35 @@ body {
   text-decoration: none;
 }
 
+.exit-button {
+  width: 5%;
+  height: auto;
+  min-width: 25px;
+  min-height: 25px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
+}
+
 .pokemon-card:hover {
   background-color: #004d40;
+}
+
+.load-bar-container {
+  display: flex;
+  border-left: solid 1px #dffffa;
+  border-right: solid 1px #dffffa;
+  align-items: center;
+  padding-left: 8px;
+  padding-right: 8px;
+  height: 24px;
+  width: 35vw;
+}
+
+.load-bar {
+  height: 8px;
+  background-color: #dffffa;
 }
 
 .loader-container {
