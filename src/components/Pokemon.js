@@ -25,7 +25,7 @@ Pokemon.propTypes = {
   pokemonObject: PropTypes.shape({
     id: PropTypes.number,
     name: PropTypes.string,
-    types: PropTypes.array,
+    types: PropTypes.arrayOf(PropTypes.string),
     stats: PropTypes.shape({
       hp: PropTypes.number,
       attack: PropTypes.number,
@@ -34,6 +34,7 @@ Pokemon.propTypes = {
       specialdefense: PropTypes.number,
       speed: PropTypes.number,
     }),
+    image: PropTypes.string.isRequired,
   }).isRequired,
 };
 
