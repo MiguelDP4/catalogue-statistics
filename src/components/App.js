@@ -19,17 +19,18 @@ class App extends React.Component {
     this.handlePokemonClick = this.handlePokemonClick.bind(this);
   }
 
-  startListRender() {
-    const { pokemons } = this.props;
-    if (pokemons.pokemons.length < 807) return false;
-    return true;
-  }
-
+  // eslint-disable-next-line react/no-deprecated
   componentWillMount() {
     const { searchPokemon } = this.props;
     for (let i = 1; i <= 807; i += 1) {
       searchPokemon(i);
     }
+  }
+
+  startListRender() {
+    const { pokemons } = this.props;
+    if (pokemons.pokemons.length < 807) return false;
+    return true;
   }
 
   handleFilterChange() {
@@ -67,9 +68,8 @@ class App extends React.Component {
                 <Route
                   path="/"
                   exact
-                  render={props => (
+                  render={() => (
                     <PokemonList
-                      {...props}
                       handleClick={this.handlePokemonClick}
                       pokemons={pokemons.pokemons}
                       filters={filters}
@@ -80,10 +80,10 @@ class App extends React.Component {
                 <div>
                   {pokemons.pokemons.map(pokemon => (
                     <Route
+                      key={`/${pokemon.name}-card-link`}
                       path={`/${pokemon.name}`}
-                      render={props => (
+                      render={() => (
                         <PokemonData
-                          {...props}
                           pokemonObject={pokemon}
                         />
                       )}
@@ -106,12 +106,28 @@ App.propTypes = {
   changeFilter: PropTypes.func.isRequired,
   changeOrder: PropTypes.func.isRequired,
   pokemons: PropTypes.shape({
-    pokemons: PropTypes.array,
+    pokemons: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number,
+      name: PropTypes.string,
+      types: PropTypes.arrayOf(PropTypes.string),
+      stats: PropTypes.shape({
+        hp: PropTypes.number,
+        attack: PropTypes.number,
+        defense: PropTypes.number,
+        specialattack: PropTypes.number,
+        specialdefense: PropTypes.number,
+        speed: PropTypes.number,
+      }),
+      pokemons: PropTypes.objectOf.isRequired,
+      pokemonName: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired,
+    })),
     pending: PropTypes.bool,
   }).isRequired,
   order: PropTypes.objectOf(PropTypes.string).isRequired,
   filters: PropTypes.objectOf(PropTypes.string).isRequired,
   searchPokemon: PropTypes.func.isRequired,
+  selectPokemon: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
