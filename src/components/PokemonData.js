@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import Exit from '../exit.svg';
 
 class PokemonData extends React.Component {
   constructor() {
@@ -14,15 +16,14 @@ class PokemonData extends React.Component {
   }
 
   render() {
-    const { pokemonName, pokemons } = this.props;
-    const pokemonObject = pokemons.pokemons.find(
-      pokemon => pokemon.name === pokemonName );
+    const { pokemonObject } = this.props;
 
     return ( pokemonObject ? 
     <div
       id={`pokemon-data`}
       className="pokemon-card-big"
     >
+      <Link to='/'><img src={Exit} alt='Exit' className='exit-button' ></img></Link>
       <h3 className="pokemon-card-h3">{pokemonObject.name.toUpperCase()}</h3>
       <div className="image-container-big">
         <img src={pokemonObject.image} className="pokemon-card-img" loading="lazy" alt={`${pokemonObject.name}-sprite`} />
