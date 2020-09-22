@@ -119,7 +119,7 @@ App.propTypes = {
         speed: PropTypes.number,
       }),
       pokemons: PropTypes.objectOf.isRequired,
-      pokemonName: PropTypes.string.isRequired,
+      pokemonName: PropTypes.string,
       image: PropTypes.string.isRequired,
     })),
     pending: PropTypes.bool,
