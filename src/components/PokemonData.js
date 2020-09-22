@@ -51,64 +51,22 @@ const PokemonData = props => {
           </div>
           <div className="stats-bars-container">
             <span className="stat-bar">
-              <div style={
-            {
-              height: '8px',
-              backgroundColor: '#dffffa',
-              width: `${pokemonObject.stats.hp / 2.55}%`,
-            }
-          }
-              />
+              <div className={`bar-stats w${Math.floor(pokemonObject.stats.hp / 2.55)}`} />
             </span>
             <span className="stat-bar">
-              <div style={
-            {
-              height: '8px',
-              backgroundColor: '#dffffa',
-              width: `${pokemonObject.stats.attack / 2.55}%`,
-            }
-          }
-              />
+              <div className={`bar-stats w${Math.floor(pokemonObject.stats.attack / 2.55)}`} />
             </span>
             <span className="stat-bar">
-              <div style={
-            {
-              height: '8px',
-              backgroundColor: '#dffffa',
-              width: `${pokemonObject.stats.defense / 2.55}%`,
-            }
-          }
-              />
+              <div className={`bar-stats w${Math.floor(pokemonObject.stats.defense / 2.55)}`} />
             </span>
             <span className="stat-bar">
-              <div style={
-            {
-              height: '8px',
-              backgroundColor: '#dffffa',
-              width: `${pokemonObject.stats.specialattack / 2.55}%`,
-            }
-          }
-              />
+              <div className={`bar-stats w${Math.floor(pokemonObject.stats.specialattack / 2.55)}`} />
             </span>
             <span className="stat-bar">
-              <div style={
-            {
-              height: '8px',
-              backgroundColor: '#dffffa',
-              width: `${pokemonObject.stats.specialdefense / 2.55}%`,
-            }
-          }
-              />
+              <div className={`bar-stats w${Math.floor(pokemonObject.stats.specialdefense / 2.55)}`} />
             </span>
             <span className="stat-bar">
-              <div style={
-            {
-              height: '8px',
-              backgroundColor: '#dffffa',
-              width: `${pokemonObject.stats.speed / 2.55}%`,
-            }
-          }
-              />
+              <div className={`bar-stats w${Math.floor(pokemonObject.stats.speed / 2.55)}`} />
             </span>
           </div>
         </div>
