@@ -4,7 +4,7 @@ import {
   GET_REQUEST_SUCCESS,
   INITIAL_API_GET_STATE,
 }
-  from '../../constants';
+from '../../constants';
 
 const pokemonList = [
   {
@@ -307,7 +307,7 @@ const finishedFetch = {
 
 const finishedFetchResult = {
   pending: false,
-  pokemons: pokemonList,
+  pokemons: [pokemonList],
 };
 
 it('changes status of request to pending true', () => {
