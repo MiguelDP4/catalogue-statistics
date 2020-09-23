@@ -18,6 +18,19 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Twitter: [@Mike_DP4](https://twitter.com/Mike_DP4)
 - LinkedIn [Miguel Dubois](https://www.linkedin.com/in/miguel-angel-dubois)
 
+## Features
+
+- Pokemon are loaded and organized when the application is loaded.
+- You can search for pokemon by typing their name on the text input on the navigation bar.
+- You can filter pokemon by type by selecting a type on the drop down box on the navigation bar.
+- You can order the pokemon by either name, pokedex number or type with the dropdown on the navigation bar.
+
+## Planned future features
+
+- Display more pokemon data (evolution lines, links to that pokemon's evolution, attacks it can learn, etc).
+- Ask user permission to use local storage so the page doesn't need to load every time.
+- User account creation so users can create pokemon teams
+
 ## Live Demo
 
 You can check a demo version of the project in [this link](http://micro-dex.herokuapp.com/).
@@ -40,6 +53,8 @@ Give a ⭐️ if you like this project!
 
 - I thank microverse for this amazing learning opportunity.
 - This project could not have been created without https://pokeapi.co/. You can visit the site by clicking on the link.
+- Pokeapi was created by [Paul Hallet](https://github.com/phalt), you can check his github by clicking on his name. Thank you very much for the API Paul.
+- Want to know more about the API? You can check more information here https://pokeapi.co/about
 
 ## Available Scripts
 
