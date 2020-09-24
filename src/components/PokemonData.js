@@ -146,4 +146,4 @@ PokemonData.propTypes = {
   }).isRequired,
 };
 
-export default connect(mapStateToProps, null)(PokemonData);
+export default PokemonData;
