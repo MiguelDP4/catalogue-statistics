@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/extensions
-import order from './order';
+import order from '../order';
 import {
   CHANGE_ORDER,
   POKEMON_NAME,
@@ -7,7 +7,7 @@ import {
   DEX_NUMBER,
   INITIAL_ORDER_STATE,
 // eslint-disable-next-line import/extensions
-} from '../constants';
+} from '../../constants';
 
 const orderByName = {
   orderBy: POKEMON_NAME,

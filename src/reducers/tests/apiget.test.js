@@ -307,7 +307,7 @@ const finishedFetch = {
 
 const finishedFetchResult = {
   pending: false,
-  pokemons: pokemonList,
+  pokemons: [pokemonList],
 };
 
 it('changes status of request to pending true', () => {

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Exit from '../exit.svg';
 
@@ -80,11 +79,6 @@ const PokemonData = props => {
   );
 };
 
-const mapStateToProps = state => ({
-  pokemons: state.pokemons,
-  selectedPokemon: state.selectedPokemon,
-});
-
 PokemonData.propTypes = {
   pokemonObject: PropTypes.shape({
     id: PropTypes.number,
@@ -99,9 +93,9 @@ PokemonData.propTypes = {
       speed: PropTypes.number,
     }),
     pokemons: PropTypes.objectOf.isRequired,
-    pokemonName: PropTypes.string.isRequired,
+    pokemonName: PropTypes.string,
     image: PropTypes.string.isRequired,
   }).isRequired,
 };
 
-export default connect(mapStateToProps, null)(PokemonData);
+export default PokemonData;

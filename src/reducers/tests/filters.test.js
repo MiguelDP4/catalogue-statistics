@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/extensions
-import filters from './filters';
+import filters from '../filters';
 // eslint-disable-next-line import/extensions
-import { CHANGE_FILTER, INITIAL_FILTER_STATE } from '../constants';
+import { CHANGE_FILTER, INITIAL_FILTER_STATE } from '../../constants';
 
 const filterGround = {
   type: 'ground',
