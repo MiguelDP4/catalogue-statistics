@@ -1,15 +1,15 @@
 import { mount, configure } from 'enzyme';
 import React from 'react';
-import Pokemon from '../Pokemon';
 import Adapter from 'enzyme-adapter-react-16';
 import { BrowserRouter as Router } from 'react-router-dom';
+import Pokemon from '../Pokemon';
 
 configure({ adapter: new Adapter() });
 
 describe('Test Pokemon component', () => {
   const pokemon = {
     id: 91,
-    name: "cloyster",
+    name: 'cloyster',
     types: Array(2),
     stats: {
       attack: 82,
@@ -17,12 +17,11 @@ describe('Test Pokemon component', () => {
       hp: 80,
       specialattack: 100,
       specialdefense: 100,
-      speed: 80
+      speed: 80,
     },
-    image: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/91.png",
-  }
+    image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/91.png',
+  };
 
-  
   let wrapper;
 
   beforeEach(() => {
@@ -38,7 +37,7 @@ describe('Test Pokemon component', () => {
   it('should have one image', () => {
     expect(wrapper.find('img')).toHaveLength(1);
   });
-  
+
   it('should have a type container tag', () => {
     expect(wrapper.find('.type-container')).toHaveLength(1);
   });

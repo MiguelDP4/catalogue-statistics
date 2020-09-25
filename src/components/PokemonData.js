@@ -121,11 +121,6 @@ const PokemonData = props => {
   );
 };
 
-const mapStateToProps = state => ({
-  pokemons: state.pokemons,
-  selectedPokemon: state.selectedPokemon,
-});
-
 PokemonData.propTypes = {
   pokemonObject: PropTypes.shape({
     id: PropTypes.number,

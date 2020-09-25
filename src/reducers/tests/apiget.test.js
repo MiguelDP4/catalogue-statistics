@@ -4,7 +4,7 @@ import {
   GET_REQUEST_SUCCESS,
   INITIAL_API_GET_STATE,
 }
-from '../../constants';
+  from '../../constants';
 
 const pokemonList = [
   {
