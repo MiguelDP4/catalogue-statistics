@@ -29,8 +29,13 @@ class App extends React.Component {
 
   startListRender() {
     const { pokemons } = this.props;
-    if (pokemons.pokemons.length < 807) return false;
-    return true;
+    let result = false;
+    if (pokemons.pokemons.length > 790){
+      result = true;
+    } else {
+      result = false;
+    }
+    return result;
   }
 
   handleFilterChange() {

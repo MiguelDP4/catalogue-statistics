@@ -1,7 +1,8 @@
+import pokeball from '../logo.svg';
 const fetchRequest = async request => {
   const response = await fetch(request);
   if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
+    throw new Error(`HTTP error! status: ${response.status}, request: ${request}`);
   } else {
     return response;
   }
@@ -37,6 +38,20 @@ const searchPokemon = async dexNumber => {
         };
       }
       foundPokemon.image = pokemon.sprites.front_default;
+    })
+    .catch(pokemon => {
+      foundPokemon.id = "not found";
+      foundPokemon.name = "not found";
+      foundPokemon.types = ["not found", "not found"];
+      foundPokemon.stats = {
+        hp: "not found",
+        attack: "not found",
+        defense: "not found",
+        specialattack: "not found",
+        specialdefense: "not found",
+        speed: "not found",
+      };
+      foundPokemon.image = pokeball;
     });
   return foundPokemon;
 };

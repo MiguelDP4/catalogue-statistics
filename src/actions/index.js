@@ -33,13 +33,18 @@ const APIcallSuccess = pokemons => ({
   pokemons,
 });
 
-export const searchAPokemon = index => async dispatch => {
-  dispatch(APIcallPending());
-  const response = await getPokemon(index);
-  return dispatch(APIcallSuccess(response));
-};
-
-export const APIcallError = error => ({
+const APIcallError = error => ({
   type: GET_REQUEST_ERROR,
   error,
 });
+
+export const searchAPokemon = index => async dispatch => {
+  dispatch(APIcallPending());
+  const response = await getPokemon(index);
+  if(response.id !== "not found"){
+    return dispatch(APIcallSuccess(response));
+  } else {
+    return dispatch(APIcallError(response));
+  }
+  
+};
